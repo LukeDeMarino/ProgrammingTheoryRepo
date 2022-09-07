@@ -4,12 +4,28 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private float speed = 7; 
     public int forceConst = 50;
     private float horizontalInput;
     private float verticalInput;
     public bool collision;
     private Rigidbody selfRigidbody;
+
+    private float m_speed = 7f;
+    public float speed
+    {
+        get { return m_speed; }
+        set
+        {
+            if (value < 0.0f)
+            {
+                Debug.LogError("You can't set a negative speed!");
+            }
+            else
+            {
+                m_speed = value;
+            }
+        } 
+    }    
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +63,6 @@ public class PlayerController : MonoBehaviour
     void OnCollisionEnter(Collision other)
     {
         collision = true;
-    }
+    } 
 }
 
